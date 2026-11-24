@@ -1,0 +1,42 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  role="img"
+  aria-label="Outlined square"
+>
+  <defs>
+    <mask id="cc-cutout" maskUnits="userSpaceOnUse" x="8.5" y="11.5" width="13.5" height="10.5">
+      <rect x="8.5" y="11.5" width="13.5" height="10.5" rx="3" fill="white" />
+      <g
+        transform="translate(6.25 7.75) scale(0.75)"
+        fill="none"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M10 10.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" />
+        <path d="M17 10.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" />
+      </g>
+    </mask>
+  </defs>
+  <path
+    d="M21 10V5A2 2 0 0 0 19 3H5A2 2 0 0 0 3 5V19A2 2 0 0 0 5 21H7"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <rect
+    x="8.5"
+    y="11.5"
+    width="13.5"
+    height="10.5"
+    rx="3"
+    fill="currentColor"
+    mask="url(#cc-cutout)"
+  />
+</svg>

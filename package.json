@@ -1,0 +1,14 @@
+{
+  "name": "caption-pip-extension",
+  "version": "1.0.124",
+  "private": true,
+  "description": "A local-first Chrome extension for subtitle-preserving Document Picture-in-Picture.",
+  "scripts": {
+    "check": "node --check src/service-worker.js && node --check src/page-bridge.js && node --check src/theme-icon.js && node --check src/content.js && node tests/static-validation.mjs && node tests/page-bridge-validation.mjs && node tests/netflix-visibility-validation.mjs && node tests/embedded-audio-validation.mjs && node tests/theme-icon-validation.mjs && node tests/no-video-toast-validation.mjs && node tests/corner-snap-validation.mjs",
+    "icons": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/generate-icons.ps1",
+    "smoke": "node tests/browser-smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

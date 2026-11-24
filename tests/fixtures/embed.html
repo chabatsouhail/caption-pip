@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #050507; }
+      .plyr { position: relative; width: 100%; height: 100%; }
+      video { display: block; width: 100%; height: 100%; object-fit: contain; }
+      .fixture-controls { position: absolute; left: 0; bottom: 0; opacity: .01; }
+      .fixture-caption-layer {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0 4% 12%;
+        box-sizing: border-box;
+        color: white;
+        text-align: center;
+        pointer-events: none;
+      }
+      .fixture-caption-line { display: inline-block; pointer-events: none; }
+      .fixture-caption-text {
+        display: inline;
+        color: white;
+        font: 700 26px/1.2 system-ui, sans-serif;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="plyr plyr--captions-active">
+      <video id="embedded-video" autoplay muted loop playsinline></video>
+      <div class="fixture-controls" aria-live="polite">
+        <button type="button">Pause</button><button type="button">Rewind 10s</button><button type="button">Forward 10s</button><button type="button">Mute</button><button type="button" class="ytp-subtitles-button" aria-pressed="true">Enable captions</button><button type="button" data-testid="subtitle-control">Subtitles CC</button><button type="button">Enter fullscreen</button>
+      </div>
+      <div class="plyr__captions"><span class="plyr__caption"></span></div>
+      <div class="MuiBox-root fixture-caption-layer">
+        <span class="MuiBox-root fixture-caption-line">
+          <span class="MuiBox-root fixture-caption-text"></span>
+        </span>
+      </div>
+    </div>
+    <script src="fixture-video.js"></script>
+    <script>
+      const embeddedVideo = document.querySelector("video");
+      const fixtureCaption = document.querySelector(".fixture-caption-text");
+      const fixtureCaptions = [
+        "Vidcore-style DOM subtitles are preserved.",
+        "Generated Material UI classes are not required.",
+        "Background subtitle updates keep working.",
+      ];
+      window.__fixtureCaptionGap = false;
+      makeFixtureVideo(embeddedVideo, "Embedded player", {
+        textTrack: false,
+        width: 720,
+        height: 300,
+      });
+      const updateFixtureCaption = () => {
+        if (window.__fixtureCaptionGap) {
+          fixtureCaption.textContent = "";
+          return;
+        }
+        const index = Math.floor(embeddedVideo.currentTime / 0.85) % fixtureCaptions.length;
+        fixtureCaption.textContent = fixtureCaptions[index] || fixtureCaptions[0];
+      };
+      embeddedVideo.addEventListener("timeupdate", updateFixtureCaption);
+      setInterval(updateFixtureCaption, 120);
+      updateFixtureCaption();
+    </script>
+  </body>
+</html>
